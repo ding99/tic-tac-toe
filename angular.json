@@ -1,5 +1,8 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "cli": {
+    "analytics": "d489a928-33e6-48e9-ae8f-8e673b45f5ca"
+  },
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
@@ -77,6 +80,9 @@
             "development": {
               "browserTarget": "tic-tac-toe:build:development"
             }
+          },
+          "options": {
+            "port" : 4202
           },
           "defaultConfiguration": "development"
         },
