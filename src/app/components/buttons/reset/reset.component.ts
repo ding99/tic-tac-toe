@@ -14,7 +14,7 @@ export class ResetComponent implements OnInit {
   }
 
   onStart(){
-    this.text = 'Reset';
+    this.text = this.text == 'Reset' ? 'Start' : 'Reset';
   }
 
 }
