@@ -9,6 +9,7 @@ import { MarkComponent } from './components/buttons/mark/mark.component';
 import { LevelComponent } from './components/buttons/level/level.component';
 import { UserComponent } from './components/buttons/user/user.component';
 import { ResetComponent } from './components/buttons/reset/reset.component';
+import { CalculatorComponent } from './components/services/calculator/calculator.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { ResetComponent } from './components/buttons/reset/reset.component';
     MarkComponent,
     LevelComponent,
     UserComponent,
-    ResetComponent
+    ResetComponent,
+    CalculatorComponent
   ],
   imports: [
     BrowserModule,
