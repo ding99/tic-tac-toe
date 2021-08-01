@@ -11,7 +11,6 @@ import { MarkComponent } from './components/buttons/mark/mark.component';
 import { LevelComponent } from './components/buttons/level/level.component';
 import { UserComponent } from './components/buttons/user/user.component';
 import { ResetComponent } from './components/buttons/reset/reset.component';
-import { CalculatorComponent } from './components/services/calculator/calculator.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
@@ -22,8 +21,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MarkComponent,
     LevelComponent,
     UserComponent,
-    ResetComponent,
-    CalculatorComponent
+    ResetComponent
   ],
   imports: [
     BrowserModule,

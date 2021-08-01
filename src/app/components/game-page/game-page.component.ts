@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GamePageComponent implements OnInit {
   message: string = 'Please start or choose role';
+  first: boolean = true; //true-player1, X; false-player2, O;
 
   constructor() { }
 
