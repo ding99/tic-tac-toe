@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserComponent } from '../buttons/user/user.component';
 
 @Component({
   selector: 'top-bar',
