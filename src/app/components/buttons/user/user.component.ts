@@ -6,10 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./user.component.scss']
 })
 export class UserComponent implements OnInit {
+  first: boolean = true;
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  onFirst(value: boolean): void{
+    this.first = value;
+  }
 }
