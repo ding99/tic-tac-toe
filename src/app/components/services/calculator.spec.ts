@@ -19,8 +19,8 @@ describe('Calculator', () => {
 
     //player1 won / player2 lost
     let data = [1,1,1,0,0,2,2,0,2];
-    expect(cal.getResults(data, player1)).toBe(won);
-    expect(cal.getResults(data, player2)).toBe(lost);
+    expect(cal.getResult(data, player1)).toBe(won);
+    expect(cal.getResult(data, player2)).toBe(lost);
   }));
 
   it('The result should be that draw', fakeAsync(() => {
@@ -29,8 +29,8 @@ describe('Calculator', () => {
 
     //draw
     let data = [0,1,1,0,0,2,2,0,0];
-    expect(cal.getResults(data, player1)).toBe(draw);
-    expect(cal.getResults(data, player2)).toBe(draw);
+    expect(cal.getResult(data, player1)).toBe(draw);
+    expect(cal.getResult(data, player2)).toBe(draw);
   }));
 
   it('get position for easy - level 0', fakeAsync(() => {
