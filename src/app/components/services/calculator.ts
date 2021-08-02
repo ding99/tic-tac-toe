@@ -92,20 +92,25 @@ export class Calculator {
             let block: LinkedList = new LinkedList();
             let space: LinkedList = new LinkedList();
             let n: number;
-    
-            if (level > 1) {
-                for (let i = 0; i < 3; i++) {
-                    if ((n = this.checkPath(marks, [i, i + 3, i + 6], block, space)) > 0)
-                        return n;
-                    if ((n = this.checkPath(marks, [i * 3, i * 3 + 1, i * 3 + 2], block, space)) > 0)
+
+            for (let i = 0; i < 3; i++) {
+                if ((n = this.checkPath(marks, [i, i + 3, i + 6], block, space, key)) > 0) {
+                    if(level > 1)
                         return n;
                 }
-                if ((n = this.checkPath(marks, [2, 4, 6], block, space)) > 0)
-                    return n;
-                if ((n = this.checkPath(marks, [0, 4, 8], block, space)) > 0)
-                    return n;
+                if ((n = this.checkPath(marks, [i * 3, i * 3 + 1, i * 3 + 2], block, space, key)) > 0) {
+                    if(level > 1)
+                        return n;
+                }
             }
-
+            if ((n = this.checkPath(marks, [2, 4, 6], block, space, key)) > 0) {
+                if(level > 1)
+                return n;
+    }
+            if ((n = this.checkPath(marks, [0, 4, 8], block, space, key)) > 0) {
+                if(level > 1)
+                return n;
+    }
             if (block.size() > 0)
                 return block.first();
             if (space.size() > 0)
@@ -118,39 +123,34 @@ export class Calculator {
         if (marks[6] === 0) return 6;
         if (marks[8] === 0) return 8;
         if (marks[1] === 0) return 1;
-        if (marks[5] === 0) return 3;
+        if (marks[3] === 0) return 3;
         if (marks[5] === 0) return 5;
         return 7;
     }
 
-    private checkPath(source: number[], positions: number[], block: LinkedList, space: LinkedList): number {
+    private checkPath(source: number[], positions: number[], block: LinkedList, space: LinkedList, key: number): number {
 
-        let zero = 0, one = 0, two = 0;
-        let ret = 0;
+        let zero = 0, self = 0, oppo = 0;
+        let ret = 0, mid;
 
-        for(let i = 0; i < 3; i++){
-            switch(source[positions[i]]){
-                case 1:
-                    one++;
-                    break;
-                case 2:
-                    two++;
-                    break;
-                default:
-                    zero++;
-                    ret = positions[i];
-                    break;
-            }
+        for (let i = 0; i < 3; i++) {
+            if ((mid = source[positions[i]]) == key)
+                self++;
+            else if (mid === 0) {
+                zero++;
+                ret = positions[i];
+            } else
+                oppo++;
         }
 
-        if(zero === 1){
-            if(one === 2)
+        if (zero === 1) {
+            if (self === 2)
                 return ret;
-            if(two === 2)
+            if (oppo === 2)
                 block.add(ret);
         }
 
-        if(zero === 2 && one === 1)
+        if (zero === 2 && self === 1)
             space.add(ret);
 
         return -1;
