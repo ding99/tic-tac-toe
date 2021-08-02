@@ -47,17 +47,21 @@ describe('Calculator', () => {
     let level = 1;
 
     let data = [0,1,1,2,0,2,0,0,0];
+    expect(cal.getPosition(data, player1, level)).toBe(0);
+    expect(cal.getPosition(data, player2, level)).toBe(4);
+
+    data = [1,0,2,0,0,2,0,1,0];
     expect(cal.getPosition(data, player1, level)).toBe(4);
-    expect(cal.getPosition(data, player2, level)).toBe(0);
+    expect(cal.getPosition(data, player2, level)).toBe(8);
   }));
 
   it('get position for middle - level 2', fakeAsync(() => {
     let player1 = 1, player2 = 2;
     let level = 2;
 
-    let data = [0,1,1,2,0,2,0,0,0];
-    expect(cal.getPosition(data, player1, level)).toBe(0);
-    expect(cal.getPosition(data, player2, level)).toBe(4);
+    let data = [1,0,2,0,0,2,0,1,0];
+    expect(cal.getPosition(data, player1, level)).toBe(8);
+    expect(cal.getPosition(data, player2, level)).toBe(8);
   }));
 
 });
