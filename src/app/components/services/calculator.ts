@@ -63,7 +63,7 @@ export class Calculator {
     //return: 0-draw, 1-won, 2-lost
     //marks: 9 items, 0-empty, 1-player1, 2-player2
     //key: 1-player1, 2-player2
-    getResults(marks: number[], key: number): number {
+    getResult(marks: number[], key: number): number {
         return this.won(marks, key) ? 1 : this.won(marks, key === 1 ? 2 : 1) ? 2 : 0;
     }
 
