@@ -1,4 +1,4 @@
-import { ComponentFixture, fakeAsync } from '@angular/core/testing';
+import { fakeAsync } from '@angular/core/testing';
 import { Calculator } from './calculator';
 
 describe('Calculator', () => {
@@ -33,21 +33,31 @@ describe('Calculator', () => {
     expect(cal.getResults(data, player2)).toBe(draw);
   }));
 
-  it('next postion for easy - level 0', fakeAsync(() => {
+  it('get position for easy - level 0', fakeAsync(() => {
     let player1 = 1, player2 = 2;
     let level = 0;
 
     let data = [0,1,1,2,0,2,0,0,0];
-    expect(cal.findPosition(data, player1, level)).toBe(4);
-    expect(cal.findPosition(data, player2, level)).toBe(4);
+    expect(cal.getPosition(data, player1, level)).toBe(4);
+    expect(cal.getPosition(data, player2, level)).toBe(4);
   }));
 
-  it('next postion for middle - level 1', fakeAsync(() => {
+  it('get position for middle - level 1', fakeAsync(() => {
     let player1 = 1, player2 = 2;
     let level = 1;
 
     let data = [0,1,1,2,0,2,0,0,0];
-    expect(cal.findPosition(data, player1, level)).toBe(4);
-    expect(cal.findPosition(data, player2, level)).toBe(0);
+    expect(cal.getPosition(data, player1, level)).toBe(4);
+    expect(cal.getPosition(data, player2, level)).toBe(0);
   }));
+
+  it('get position for middle - level 2', fakeAsync(() => {
+    let player1 = 1, player2 = 2;
+    let level = 2;
+
+    let data = [0,1,1,2,0,2,0,0,0];
+    expect(cal.getPosition(data, player1, level)).toBe(0);
+    expect(cal.getPosition(data, player2, level)).toBe(4);
+  }));
+
 });
