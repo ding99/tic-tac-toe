@@ -60,7 +60,7 @@ class LinkedList {
 
 export class Calculator {
 
-    //return: 0-draw, 1-win, 2-lost
+    //return: 0-draw, 1-won, 2-lost
     //marks: 9 items, 0-empty, 1-player1, 2-player2
     //key: 1-player1, 2-player2
     getResults(marks: number[], key: number): number {
@@ -87,30 +87,30 @@ export class Calculator {
         return false;
     }
 
-    findPosition(marks: number[], key: number, level: number): number {
+    getPosition(marks: number[], key: number, level: number): number {
         if (level > 0) {
             let block: LinkedList = new LinkedList();
             let space: LinkedList = new LinkedList();
             let n: number;
 
             for (let i = 0; i < 3; i++) {
-                if ((n = this.checkPath(marks, [i, i + 3, i + 6], block, space, key)) > 0) {
-                    if(level > 1)
+                if ((n = this.checkPath(marks, [i, i + 3, i + 6], block, space, key)) >= 0) {
+                    if (level > 1)
                         return n;
                 }
-                if ((n = this.checkPath(marks, [i * 3, i * 3 + 1, i * 3 + 2], block, space, key)) > 0) {
-                    if(level > 1)
+                if ((n = this.checkPath(marks, [i * 3, i * 3 + 1, i * 3 + 2], block, space, key)) >= 0) {
+                    if (level > 1)
                         return n;
                 }
             }
-            if ((n = this.checkPath(marks, [2, 4, 6], block, space, key)) > 0) {
-                if(level > 1)
-                return n;
-    }
-            if ((n = this.checkPath(marks, [0, 4, 8], block, space, key)) > 0) {
-                if(level > 1)
-                return n;
-    }
+            if ((n = this.checkPath(marks, [2, 4, 6], block, space, key)) >= 0) {
+                if (level > 1)
+                    return n;
+            }
+            if ((n = this.checkPath(marks, [0, 4, 8], block, space, key)) >= 0) {
+                if (level > 1)
+                    return n;
+            }
             if (block.size() > 0)
                 return block.first();
             if (space.size() > 0)
