@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import { Calculator } from '../services/calculator';
+import { MarkComponent } from '../buttons/mark/mark.component';
 
 @Component({
   selector: 'game-page',
@@ -6,17 +8,95 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./game-page.component.scss']
 })
 export class GamePageComponent implements OnInit {
+  started: boolean;
   message: string;
   first: boolean; //true-player1, X; false-player2, O;
+  isYou: boolean;
   marks: number[]; // 0-none, 1-player1, 2-player2;
+  step: number;
+  end: boolean;
+  calculator: Calculator;
+  level: number;
+
+  @ViewChildren(MarkComponent)
+  buttons!: QueryList<MarkComponent>;
 
   constructor() {
+    this.calculator = new Calculator();
+    this.isYou = true;
+    this.started = true;
     this.message = 'Please start or choose role';
-    this.first = true; 
+    this.first = true;
     this.marks = [9];
-   }
+    this.end = false;
+    this.step = 0;
+    this.level = 2;
+
+    this.init();
+  }
+
+  private player(){
+    return this.first ? 1 : 2;
+  }
+  private pc(){
+    return this.first ? 2 : 1;
+  }
+
+  private init(): void {
+    for (let i = 0; i < 9; i++) {
+      this.marks[i] = 0;
+    }
+
+    this.end = false;
+    this.step = 0;
+    this.message = '';
+    console.log("first [" + this.first + "]");
+  }
 
   ngOnInit(): void {
+  }
+
+  onClick(position: number): void {
+    this.marks[position] = this.player();
+    console.log("click 1 (player): " + position);
+    this.getResult();
+
+    if (!this.end){
+      let index = this.calculator.getPosition(this.marks, this.pc(), this.level);
+      this.marks[index] = this.pc();
+      console.log("click 2 (pc): " + index);
+
+      let button = (this.buttons.toArray())[index];
+      button.text = this.pc() == 1 ? 'X' : 'O';
+      button.enable = false;
+
+      this.getResult();
+    }
+  }
+
+  getResult(): void {
+    let res = this.calculator.getResult(this.marks, this.player());
+    console.log("res " + res);
+    if (res > 0 || this.step > 7)
+      this.end = true;
+
+    this.display(res);
+  }
+
+  display(result: number): void {
+
+    if (result == 1)
+      this.message = "You Won!";
+    else if (result == 2)
+      this.message = "You Lost!";
+    else if (this.step > 7)
+      this.message = "Draw!";
+
+    this.step++;
+
+    if (this.end) {
+      //TODO: update parents
+    }
   }
 
 }
