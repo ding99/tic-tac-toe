@@ -94,27 +94,22 @@ export class Calculator {
             let n: number;
 
             for (let i = 0; i < 3; i++) {
-                if ((n = this.checkPath(marks, [i, i + 3, i + 6], block, space, key)) >= 0) {
-                    if (level > 1)
-                        return n;
-                }
-                if ((n = this.checkPath(marks, [i * 3, i * 3 + 1, i * 3 + 2], block, space, key)) >= 0) {
-                    if (level > 1)
-                        return n;
-                }
-            }
-            if ((n = this.checkPath(marks, [2, 4, 6], block, space, key)) >= 0) {
-                if (level > 1)
+                if ((n = this.checkPath(marks, [i, i + 3, i + 6], block, space, key)) >= 0)
+                    return n;
+                if ((n = this.checkPath(marks, [i * 3, i * 3 + 1, i * 3 + 2], block, space, key)) >= 0)
                     return n;
             }
-            if ((n = this.checkPath(marks, [0, 4, 8], block, space, key)) >= 0) {
-                if (level > 1)
-                    return n;
+            if ((n = this.checkPath(marks, [2, 4, 6], block, space, key)) >= 0)
+                return n;
+            if ((n = this.checkPath(marks, [0, 4, 8], block, space, key)) >= 0)
+                return n;
+
+            if (level > 1) {
+                if (block.size() > 0)
+                    return block.first();
+                if (space.size() > 0)
+                    return space.first();
             }
-            if (block.size() > 0)
-                return block.first();
-            if (space.size() > 0)
-                return space.first();
         }
 
         if (marks[4] === 0) return 4;
