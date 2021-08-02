@@ -64,17 +64,17 @@ export class Calculator {
     //marks: 9 items, 0-empty, 1-player1, 2-player2
     //key: 1-player1, 2-player2
     getResults(marks: number[], key: number): number {
-        return this.won(marks, key) ? 1 : this.won(marks, key == 1 ? 2 : 1) ? 2 : 0;
+        return this.won(marks, key) ? 1 : this.won(marks, key === 1 ? 2 : 1) ? 2 : 0;
     }
 
     private won(marks: number[], key: number): boolean {
 
         for (let i = 0; i < 3; i++) {
             //column
-            if (marks[i] == key && marks[i + 3] == key && marks[i + 6] == key)
+            if (marks[i] === key && marks[i + 3] === key && marks[i + 6] === key)
                 return true;
             //row
-            if (marks[i * 3] == key && marks[i * 3 + 1] == key && marks[i * 3 + 2] == key)
+            if (marks[i * 3] === key && marks[i * 3 + 1] === key && marks[i * 3 + 2] === key)
                 return true;
         }
 
@@ -88,11 +88,11 @@ export class Calculator {
     }
 
     findPosition(marks: number[], key: number, level: number): number {
-        let block: LinkedList = new LinkedList();
-        let space: LinkedList = new LinkedList();
-        let n: number;
-
         if (level > 0) {
+            let block: LinkedList = new LinkedList();
+            let space: LinkedList = new LinkedList();
+            let n: number;
+    
             if (level > 1) {
                 for (let i = 0; i < 3; i++) {
                     if ((n = this.checkPath(marks, [i, i + 3, i + 6], block, space)) > 0)
@@ -125,10 +125,8 @@ export class Calculator {
 
     private checkPath(source: number[], positions: number[], block: LinkedList, space: LinkedList): number {
 
-        let zero: number = 0;
-        let one: number = 0;
-        let two: number = 0;
-        let ret: number = 0;
+        let zero = 0, one = 0, two = 0;
+        let ret = 0;
 
         for(let i = 0; i < 3; i++){
             switch(source[positions[i]]){
@@ -138,7 +136,7 @@ export class Calculator {
                 case 2:
                     two++;
                     break;
-                case 1:
+                default:
                     zero++;
                     ret = positions[i];
                     break;
