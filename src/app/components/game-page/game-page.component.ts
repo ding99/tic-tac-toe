@@ -96,7 +96,9 @@ export class GamePageComponent implements OnInit {
     this.step++;
 
     if (this.end) {
-      //TODO: update parents
+      this.buttons.forEach(mark =>
+        mark.enable = false
+      );
     }
   }
 
