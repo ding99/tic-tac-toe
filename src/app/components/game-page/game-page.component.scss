@@ -1,13 +1,13 @@
 .gamepage{
     display: contents;
-
     text-align: center;
-    // align-items: center;
-    // justify-content: center;
 }
 
 .grid-style{
-    width: 272px;
+    width: 270px;
+    height: 270px;
     margin: auto;
-    background-color: rgb(16, 56, 32);
+    background-color: green;
 }
+
+h3{ color: green; font-style: italic; }
