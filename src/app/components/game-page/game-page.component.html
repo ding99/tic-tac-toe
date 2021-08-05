@@ -1,12 +1,12 @@
 <div class="gamepage">
-  <h3>{{ message }}</h3>
-
-  <div class="grid-style" *ngIf = "started">
-    <mat-grid-list cols="3">
-        <mat-grid-tile *ngFor="let number of [0,1,2,3,4,5,6,7,8]">
-          <button-mark (buttonClicked)="onClick(number)"></button-mark>
-        </mat-grid-tile>
+  <br/>
+  <div class="grid-style" *ngIf="started">
+    <mat-grid-list cols="3" gutterSize="3">
+      <mat-grid-tile *ngFor="let number of [0,1,2,3,4,5,6,7,8]">
+        <button-mark (buttonClicked)="onClick(number)"></button-mark>
+      </mat-grid-tile>
     </mat-grid-list>
-</div>
-
+  </div>
+  <br/>
+  <h3>{{ message }}</h3>
 </div>
