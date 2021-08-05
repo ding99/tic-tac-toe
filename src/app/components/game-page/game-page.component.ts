@@ -95,11 +95,8 @@ export class GamePageComponent implements OnInit {
 
     this.step++;
 
-    if (this.end) {
-      this.buttons.forEach(mark =>
-        mark.enable = false
-      );
-    }
+    if (this.end)
+      this.buttons.forEach(mark => mark.enable = false);
   }
 
 }
