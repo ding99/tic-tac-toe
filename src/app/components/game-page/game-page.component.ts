@@ -8,29 +8,31 @@ import { MarkComponent } from '../buttons/mark/mark.component';
   styleUrls: ['./game-page.component.scss']
 })
 export class GamePageComponent implements OnInit {
-  started: boolean;
-  message: string;
-  first: boolean; //true-player1, X; false-player2, O;
-  isYou: boolean;
-  marks: number[]; // 0-none, 1-player1, 2-player2;
-  step: number;
-  end: boolean;
   calculator: Calculator;
   level: number;
+
+  marks: number[]; // 0-none, 1-player1, 2-player2;
+  step: number;
+  message: string;
+
+  started: boolean;
+  first: boolean; //true-player1, X; false-player2, O;
+  end: boolean;
 
   @ViewChildren(MarkComponent)
   buttons!: QueryList<MarkComponent>;
 
   constructor() {
     this.calculator = new Calculator();
-    this.isYou = true;
-    this.started = true;
-    this.message = 'Please start or choose role';
-    this.first = true;
-    this.marks = [9];
-    this.end = false;
-    this.step = 0;
     this.level = 2;
+
+    this.marks = [9];
+    this.step = 0;
+    this.message = 'Please start or choose role';
+
+    this.started = true;
+    this.first = true;
+    this.end = false;
 
     this.init();
   }
@@ -43,14 +45,13 @@ export class GamePageComponent implements OnInit {
   }
 
   private init(): void {
-    for (let i = 0; i < 9; i++) {
+    for (let i = 0; i < 9; i++)
       this.marks[i] = 0;
-    }
 
-    this.end = false;
     this.step = 0;
     this.message = '';
-    console.log("first [" + this.first + "]");
+
+    this.end = false;
   }
 
   ngOnInit(): void {
@@ -94,9 +95,8 @@ export class GamePageComponent implements OnInit {
 
     this.step++;
 
-    if (this.end) {
-      //TODO: update parents
-    }
+    if (this.end)
+      this.buttons.forEach(mark => mark.enable = false);
   }
 
 }
