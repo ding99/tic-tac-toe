@@ -12,7 +12,7 @@ export class GamePageComponent implements OnInit {
   level: number;
 
   marks: number[]; // 0-none, 1-player1, 2-player2;
-  step: number;
+  step: number = 0;
   message: string;
 
   started: boolean;
@@ -27,7 +27,6 @@ export class GamePageComponent implements OnInit {
     this.level = 2;
 
     this.marks = [9];
-    this.step = 0;
     this.message = 'Please start or choose role';
 
     this.started = true;
@@ -86,17 +85,14 @@ export class GamePageComponent implements OnInit {
 
   display(result: number): void {
 
-    if (result == 1)
+    if (result == this.player())
       this.message = "You Won!";
-    else if (result == 2)
+    else if (result == this.pc())
       this.message = "You Lost!";
     else if (this.step > 7)
       this.message = "Draw!";
 
     this.step++;
-
-    if (this.end)
-      this.buttons.forEach(mark => mark.enable = false);
   }
 
 }
