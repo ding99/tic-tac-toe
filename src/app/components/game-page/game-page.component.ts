@@ -85,9 +85,9 @@ export class GamePageComponent implements OnInit {
 
   display(result: number): void {
 
-    if (result == 1)
+    if (result == this.player())
       this.message = "You Won!";
-    else if (result == 2)
+    else if (result == this.pc())
       this.message = "You Lost!";
     else if (this.step > 7)
       this.message = "Draw!";
